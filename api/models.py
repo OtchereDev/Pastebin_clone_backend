@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -67,6 +68,9 @@ class UserProfile(models.Model):
     website_url=models.URLField(max_length=225,null=True,blank=True)
     location=models.CharField(max_length=225,blank=True,null=True)
     avatar=models.ImageField(blank=True,null=True,upload_to='profile_images')
+
+    def get_avatar_url(self):
+        return settings.BASE_URL + self.avatar.url
 
 
 class UserSettings(models.Model):
