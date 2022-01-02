@@ -1,8 +1,9 @@
 from rest_framework.serializers import ModelSerializer
 from .models import CodePaste, UserProfile,UserSettings
+from rest_framework import serializers
 
 class UserProfileSerializer(ModelSerializer):
-
+    avatar = serializers.CharField(source="get_avatar_url",required = False)
     class Meta:
         model=UserProfile
         fields=[

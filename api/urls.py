@@ -1,4 +1,4 @@
-from api.views import DeletePaste, GetUser, GetUserProfile, GetUserSettings, NewFolder, NewPaste, RetrievePaste, RetrieveUserCodeFolder, RetrieveUserCodeFolderContent, Top10Paste, UpdatePaste,fieldReset,UpdateUserProfile,UpdateUserSettings
+from api.views import DeletePaste, GetProfileData, GetUser, GetUserProfile, GetUserSettings, NewFolder, NewPaste, RetrievePaste, RetrieveUserCodeFolder, RetrieveUserCodeFolderContent, Top10Paste, UpdatePaste,fieldReset,UpdateUserProfile,UpdateUserSettings
 from django.urls import path,include
 # from djoser.social
 
@@ -8,6 +8,7 @@ urlpatterns = [
     path('reset/<str:type>/confirm/<str:uid>/<str:token>/',fieldReset),
     path('get_user_profile/',GetUserProfile.as_view(),name='get_user_profile'),
     path('get_user_settings/',GetUserSettings.as_view(),name='get_user_settings'),
+    path('get_profile_data/',GetProfileData.as_view(),name="get_profile_data"),
     path('new/',NewPaste.as_view(),name='new_paste'),
     path('bin/<str:uuid>/update/',UpdatePaste.as_view(),name='update_paste'),
     path('bin/<str:uuid>/delete/',DeletePaste.as_view(),name='delete_paste'),

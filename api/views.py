@@ -375,6 +375,7 @@ class UpdateUserProfile(APIView):
             return JsonResponse({'detail':'success'})
             
         else:
+            print("pp:",serializer.errors)
             return JsonResponse(serializer.errors,status=400)
 
 
@@ -450,4 +451,13 @@ class GetUserSettings(APIView):
         })
 
 
+class GetProfileData(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request,*args,**kwargs):
+        user = request.user
 
+        obj = UserProfile.objects.get(user=user)
+
+        serializer = UserProfileSerializer(obj)
+
+        return JsonResponse(serializer.data)
